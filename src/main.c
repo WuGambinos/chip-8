@@ -19,6 +19,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+#include <dirent.h>
 #include "../include/emu.h"
 #include "../include/raylib.h"
 #define numRoms 8
@@ -41,7 +42,19 @@ int main(int argc, char **argv) {
     //Selector for rom starting at 0
     int rom = 0;
 
-    //Open File
+    //Pointer for directory entry
+    struct dirent *de;
+
+    //opendir() returns a pointer of DIR type
+    DIR *dr = opendir("../roms");
+
+    if(dr == NULL) {
+        printf("Could not open current directory");
+        return 0;
+    }
+
+
+   /* //Open File
     FILE *f = fopen(argv[1], "rb");
 
     // Halt Program if file not found 
@@ -150,6 +163,8 @@ SetTargetFPS(120);
     CloseWindow();
     
 
+
+*/
 
 
 
