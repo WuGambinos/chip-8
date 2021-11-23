@@ -102,7 +102,7 @@ SetTargetFPS(120);
             DrawText("Fishie", GetScreenWidth()/2 - GetScreenWidth()/4 - 100, GetScreenHeight()/2 - 150, 20, RED);
 
             //Draw Box around Selection
-            DrawRectangleLines(GetScreenWidth()/2 - GetScreenWidth()/4 - 120, GetScreenHeight()/2 - 150 + (rom * 30), 90, 25, BLUE);
+            DrawRectangleLines(GetScreenWidth()/2 - GetScreenWidth()/4 - 120, GetScreenHeight()/2 - 150 + (rom * 30), (15 * 20), 25, BLACK);
 
 
             DrawText("IBM", GetScreenWidth()/2 - GetScreenWidth()/4 - 100, GetScreenHeight()/2 - 120, 20, RED);
@@ -111,7 +111,7 @@ SetTargetFPS(120);
             DrawText("spockpaperscissors", GetScreenWidth()/2 - GetScreenWidth()/4 - 100, GetScreenHeight()/2 - 30, 20, RED);
             DrawText("test_opcode", GetScreenWidth()/2 - GetScreenWidth()/4 - 100, GetScreenHeight()/2, 20, RED);
             DrawText("tombstontipp", GetScreenWidth()/2 - GetScreenWidth()/4 - 100, GetScreenHeight()/2 + 30, 20, RED);
-            DrawText("c8_test.c8", GetScreenWidth()/2 - GetScreenWidth()/4 - 100, GetScreenHeight()/2 + 60, 20, RED);
+            DrawText("c8_test", GetScreenWidth()/2 - GetScreenWidth()/4 - 100, GetScreenHeight()/2 + 60, 20, RED);
             //DrawRectangleLines(GetScreenWidth()/2, GetScreenHeight()/2, GetScreenWidth(), GetScreenHeight(), BLUE);
             
 
