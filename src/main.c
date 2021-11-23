@@ -21,6 +21,7 @@
 #include <string.h>
 #include "../include/emu.h"
 #include "../include/raylib.h"
+#define numRoms 8
 
 
 int main(int argc, char **argv) {
@@ -35,7 +36,7 @@ int main(int argc, char **argv) {
     char string[100];
 
     //Store roms
-    char roms[8][100];
+    char roms[numRoms][100];
 
     //Selector for rom starting at 0
     int rom = 0;
@@ -82,7 +83,35 @@ SetTargetFPS(120);
 
         if(isMenu) {
             ClearBackground(WHITE);
-            DrawText("Hello World", GetScreenWidth()/2, GetScreenHeight()/2, 20, RED);
+            if(IsKeyPressed(KEY_DOWN)) {
+                //Move box to next rom
+                rom++;
+                //Lower Limit
+                if(rom > numRoms - 1) {
+                    rom = 7;
+                }
+            }
+            else if(IsKeyPressed(KEY_UP)) {
+                //Move box to previous rom
+                rom--;
+                //Upper Limit
+                if(rom < 0) {
+                    rom = 0;
+                }
+            }
+            DrawText("Fishie", GetScreenWidth()/2 - GetScreenWidth()/4 - 100, GetScreenHeight()/2 - 150, 20, RED);
+
+            //Draw Box around Selection
+            DrawRectangleLines(GetScreenWidth()/2 - GetScreenWidth()/4 - 120, GetScreenHeight()/2 - 150 + (rom * 30), 90, 25, BLUE);
+
+
+            DrawText("IBM", GetScreenWidth()/2 - GetScreenWidth()/4 - 100, GetScreenHeight()/2 - 120, 20, RED);
+            DrawText("logo", GetScreenWidth()/2 - GetScreenWidth()/4 - 100, GetScreenHeight()/2 - 90, 20, RED);
+            DrawText("RPS", GetScreenWidth()/2 - GetScreenWidth()/4 - 100, GetScreenHeight()/2 - 60, 20, RED);
+            DrawText("spockpaperscissors", GetScreenWidth()/2 - GetScreenWidth()/4 - 100, GetScreenHeight()/2 - 30, 20, RED);
+            DrawText("test_opcode", GetScreenWidth()/2 - GetScreenWidth()/4 - 100, GetScreenHeight()/2, 20, RED);
+            DrawText("tombstontipp", GetScreenWidth()/2 - GetScreenWidth()/4 - 100, GetScreenHeight()/2 + 30, 20, RED);
+            DrawText("c8_test.c8", GetScreenWidth()/2 - GetScreenWidth()/4 - 100, GetScreenHeight()/2 + 60, 20, RED);
             //DrawRectangleLines(GetScreenWidth()/2, GetScreenHeight()/2, GetScreenWidth(), GetScreenHeight(), BLUE);
             
 
