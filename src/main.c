@@ -27,8 +27,18 @@ int main(int argc, char **argv) {
 
     
     argc = argc;
+
+    //Rom Menu
+    bool isMenu = true;
+
     //Store Strings for Debugging
     char string[100];
+
+    //Store roms
+    char roms[8][100];
+
+    //Selector for rom starting at 0
+    int rom = 0;
 
     //Open File
     FILE *f = fopen(argv[1], "rb");
@@ -54,34 +64,55 @@ int main(int argc, char **argv) {
 
 //RAYLIB
 
-InitWindow (820, 320, "Chip8 Virtual Machine");
+//(820, 320)
+InitWindow (800, 320, "Chip8 Virtual Machine");
 SetTargetFPS(120);
 
     while(!WindowShouldClose()) {
-        BeginDrawing();
 
-        ClearBackground (BLUE);
+        if(isMenu) {
+            if(IsKeyPressed(KEY_ENTER)) {
+                isMenu = false;
+            }
 
-        emulateCycle(chip);
-        checkKeys(chip);
-        		
-        // If the draw flag is set update the screen
-		if (chip -> drawFlag == 1)
-        { 
-            drawGraphics(chip);
         }
 
-        DrawText("Hello World", 700, 25, 15, WHITE);
-        sprintf(string, "PC: %X", chip -> pc);
-        DrawText(string, 700, 40, 10, WHITE);
+        
+        BeginDrawing();
 
-        sprintf(string, "SP: %X", chip -> sp);
-        DrawText(string, 700, 55,10, WHITE);
+        if(isMenu) {
+            ClearBackground(WHITE);
+            DrawText("Hello World", GetScreenWidth()/2, GetScreenHeight()/2, 20, RED);
+            //DrawRectangleLines(GetScreenWidth()/2, GetScreenHeight()/2, GetScreenWidth(), GetScreenHeight(), BLUE);
+            
 
-        for(int i = 0; i < 0xF; i++)
-        {
-            sprintf(string, "V[%X] = %X", i, chip -> V[i]);
-            DrawText(string, 700, 70 + (i * 10), 10, WHITE);
+        }
+
+        else {
+
+            ClearBackground (BLUE);
+
+            emulateCycle(chip);
+            checkKeys(chip);
+                    
+            // If the draw flag is set update the screen
+            if (chip -> drawFlag == 1)
+            { 
+                drawGraphics(chip);
+            }
+
+            DrawText("Hello World", 700, 25, 15, WHITE);
+            sprintf(string, "PC: %X", chip -> pc);
+            DrawText(string, 700, 40, 10, WHITE);
+
+            sprintf(string, "SP: %X", chip -> sp);
+            DrawText(string, 700, 55,10, WHITE);
+
+            for(int i = 0; i < 0xF; i++)
+            {
+                sprintf(string, "V[%X] = %X", i, chip -> V[i]);
+                DrawText(string, 700, 70 + (i * 10), 10, WHITE);
+            }
         }
 
 
